@@ -26,7 +26,6 @@ impl Ticket {
         if status != "To-Do" && status != "In Progress" && status != "Done" {
             panic!("Only `To-Do`, `In Progress`, and `Done` statuses are allowed");
         }
-
         Ticket {
             title,
             description,
@@ -44,6 +43,18 @@ impl Ticket {
 
     pub fn status(&self) -> &String {
         &self.status
+    }
+
+    pub fn set_title(&mut self, new_title: String){
+        self.title = new_title;
+    }
+
+    pub fn set_description(&mut self, new_description: String){
+        self.description = new_description;
+    }
+
+    pub fn set_status(&mut self, new_status: String){
+        self.status = new_status;
     }
 }
 
@@ -63,7 +74,6 @@ mod tests {
         assert_eq!(ticket.description(), "A new description");
         assert_eq!(ticket.status(), "Done");
     }
-
     #[test]
     #[should_panic(expected = "Title cannot be empty")]
     fn title_cannot_be_empty() {
